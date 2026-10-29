@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Analise mensagens suspeitas e receba orientações para se proteger de golpes digitais."
+    >
+    <meta name="theme-color" content="#080d18">
+
+    <title>Isso é golpe? — Análise de mensagem</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="style.css">
+
+    <script src="script.js" defer></script>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <a
+        class="brand"
+        href="#"
+        aria-label="Isso é golpe? página inicial"
+      >
+        <span class="brand-icon">⌁</span>
+        Isso é golpe?
+      </a>
+
+      <nav aria-label="Navegação principal">
+        <a href="#golpes">Tipos de golpe</a>
+        <a href="#proteja-se">Como se proteger</a>
+
+        <button
+          class="theme-toggle"
+          id="themeToggle"
+          type="button"
+          aria-pressed="false"
+        >
+          <span id="themeIcon" aria-hidden="true">☀</span>
+          <span id="themeLabel">Tema claro</span>
+        </button>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <p class="eyebrow">
+          <span class="status-dot"></span>
+          FERRAMENTA DE PREVENÇÃO DIGITAL
+        </p>
+
+        <h1>
+          Essa mensagem é confiável
+          <span>mesmo?</span>
+        </h1>
+
+        <p class="lead">
+          Cole o texto que você recebeu. Vamos procurar sinais de fraude,
+          tentativas de pressão, pedidos suspeitos e padrões comuns de golpes digitais.
+        </p>
+
+        <div class="analyzer panel">
+          <label for="msg">Mensagem recebida</label>
+
+          <textarea
+            id="msg"
+            rows="7"
+            maxlength="12000"
+            placeholder="Cole aqui a mensagem, SMS, e-mail ou conversa suspeita..."
+            spellcheck="false"
+          ></textarea>
+
+          <div class="input-meta">
+            <span>
+              Faça a análise sem clicar em links nem responder à mensagem.
+            </span>
+            <span id="charCount">0 / 12.000</span>
+          </div>
+
+          <div class="examples">
+            <span class="examples-label">Testar um exemplo:</span>
+
+            <button
+              type="button"
+              class="example"
+              data-t="URGENTE: sua conta será bloqueada hoje. Clique no link https://exemplo.invalid para confirmar seus dados e evitar o bloqueio."
+            >
+              Falsa conta bloqueada
+            </button>
+
+            <button
+              type="button"
+              class="example"
+              data-t="Oi, troquei de número. Meu celular quebrou. Preciso que você faça um Pix agora e depois te explico."
+            >
+              Familiar pedindo Pix
+            </button>
+
+            <button
+              type="button"
+              class="example"
+              data-t="Parabéns! Você ganhou um prêmio. Para liberar, pague uma taxa de cadastro via Pix e envie seu CPF."
+            >
+              Prêmio com taxa
+            </button>
+          </div>
+
+          <button
+            id="go"
+            class="analyze-button"
+            type="button"
+          >
+            <span aria-hidden="true">⌕</span>
+            Analisar mensagem
+          </button>
+
+          <p class="privacy-note">
+            <span aria-hidden="true">▣</span>
+            Esta versão analisa o texto localmente no seu navegador.
+            Não envie senhas, códigos ou dados pessoais.
+          </p>
+        </div>
+
+        <div
+          id="out"
+          class="results panel"
+          aria-live="polite"
+          hidden
+        ></div>
+      </section>
+
+      <section id="golpes" class="content-section">
+        <p class="eyebrow">FIQUE ATENTO</p>
+
+        <h2>Padrões comuns de golpes digitais</h2>
+
+        <p class="section-intro">
+          Golpistas podem se passar por bancos, empresas, órgãos públicos,
+          conhecidos ou serviços de entrega. Veja os padrões que a ferramenta procura.
+        </p>
+
+        <div class="tips-grid">
+          <article class="tip-card">
+            <span class="tip-number">01</span>
+            <h3>Falsa central de atendimento</h3>
+            <p>
+              Alguém afirma haver um problema na conta e pede para ligar
+              para um número, instalar um aplicativo ou compartilhar dados.
+            </p>
+          </article>
+
+          <article class="tip-card">
+            <span class="tip-number">02</span>
+            <h3>WhatsApp falso</h3>
+            <p>
+              Um número novo usa a foto de alguém conhecido e pede dinheiro
+              com urgência, alegando emergência ou problema no celular.
+            </p>
+          </article>
+
+          <article class="tip-card">
+            <span class="tip-number">03</span>
+            <h3>Links e páginas falsas</h3>
+            <p>
+              Uma mensagem pede para clicar em um link para atualizar cadastro,
+              regularizar conta, rastrear entrega ou receber benefício.
+            </p>
+          </article>
+
+          <article class="tip-card">
+            <span class="tip-number">04</span>
+            <h3>Prêmios e ofertas improváveis</h3>
+            <p>
+              Prometem prêmio, emprego ou retorno fácil, muitas vezes exigindo
+              taxa antecipada ou dados pessoais.
+            </p>
+          </article>
+
+          <article class="tip-card">
+            <span class="tip-number">05</span>
+            <h3>Roubo de conta ou linha</h3>
+            <p>
+              Pedem senha, código de autenticação ou dados que podem permitir
+              a invasão de uma conta ou a tomada da linha telefônica.
+            </p>
+          </article>
+
+          <article class="tip-card">
+            <span class="tip-number">06</span>
+            <h3>Falsificação de identidade</h3>
+            <p>
+              O contato pode imitar o nome, o número ou a aparência de uma
+              instituição legítima. O identificador, sozinho, não prova que é verdadeiro.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="proteja-se" class="content-section protect-section">
+        <p class="eyebrow">PARE, CONFIRA, SÓ ENTÃO AJA</p>
+
+        <h2>O que fazer se a mensagem parecer suspeita</h2>
+
+        <ol class="safety-list">
+          <li>
+            <span>1</span>
+            <div>
+              <strong>Não clique nem responda.</strong>
+              <p>
+                Não abra anexos, não instale aplicativos indicados pela
+                mensagem e não compartilhe códigos de verificação.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <span>2</span>
+            <div>
+              <strong>Confirme por outro canal.</strong>
+              <p>
+                Abra o aplicativo oficial ou digite o endereço conhecido no
+                navegador. Se for alguém conhecido, ligue para o número que
+                você já tinha salvo.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <span>3</span>
+            <div>
+              <strong>Não faça pagamentos sob pressão.</strong>
+              <p>
+                Desconfie de taxas inesperadas, transferências urgentes e
+                pedidos de dinheiro que não possam ser confirmados.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <span>4</span>
+            <div>
+              <strong>Se já agiu, procure ajuda rapidamente.</strong>
+              <p>
+                Contate seu banco ou serviço pelos canais oficiais, troque
+                senhas afetadas, proteja suas contas e registre ocorrência
+                se houver prejuízo.
+              </p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="sources">
+          <h3>Fontes para se informar</h3>
+
+          <p>
+            As orientações gerais desta página foram inspiradas em materiais
+            de prevenção a fraudes. Consulte as fontes oficiais para
+            informações completas e atualizadas:
+          </p>
+
+          <ul>
+            <li>
+              <a
+                href="https://www.gov.br/anatel/pt-br/assuntos/dicas-contra-fraudes/golpes-atuais-mais-comuns"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Anatel — Golpes atuais mais comuns
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="https://bbprevidencia.com.br/seguranca/artigo/os-golpes-digitais-mais-praticados-em-2026-e-como-se-proteger-de-cada-um"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                BB Previdência — Golpes digitais mais praticados em 2026
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Isso é golpe?</span>
+      <span>
+        Ferramenta educativa — não substitui confirmação com a instituição
+        envolvida e faça sempre sua denuncia na central de Policia mais
+        próxima para futuras investigações.
+      </span>
+    </footer>
+  </body>
+</html>
